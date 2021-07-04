@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>safeSchools</title>
+        <link rel='stylesheet' href="style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="nav">
+            <div class="navBox">
+                <a id="logo">safeSchools</a>
+                <div class="toggNav" id="minMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="menu">
+                    <li class="items">
+                        <a href="index.html" class="links">Home</a>
+                    </li>
+                    <li class="items">
+                        <a href="./about/about.html" class="links">About</a>
+                    </li>
+                    <li class="outerBtn">
+                        <a href="signUp/signUp.html" class="btn">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <br><br><br>
+        <div class="reports">
+            <header class="head">
+                <h1>This is a SAFE SPACE</h1>
+                <h3>Share your story...</h3>
+            </header>
+    
+            <!-- Input Form -->
+            <form onsubmit='return false;'>
+                <div class="userIn">
+                    <input type="text" class="inPut" placeholder="Tell us what's wrong...">
+                    <button type="submit" class="button">
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                </div>
+            </form>
+            <br><br>
+    
+            <!-- Student Submissions -->
+            <div class="items">
+                <u1 class="stories"></u1>
+            </div>
+        </div>
+
+        <script>
+            const burger = document.querySelector("#minMenu");
+            const links = document.querySelector(".menu");
+            const addButton = document.querySelector(".button");
+            const inPut = document.querySelector(".inPut");
+            const space = document.querySelector(".stories");
+
+            //Drop-Down Menu
+            const minMenu = () => {
+                burger.classList.toggle("is-active");
+                links.classList.toggle("active");
+            }
+
+            burger.addEventListener("click", minMenu);
+
+            //Student Submissions
+            addButton.addEventListener("click", () => {
+                //Adds users' reports to the page
+                const entry = document.createElement("div");
+                const item = document.createElement("li");
+                item.classList.add("userStory");
+                entry.classList.add("theDiv");
+                item.innerText = inPut.value;
+                entry.append(item);
+                space.append(entry);
+                inPut.value = "";
+
+                //Adds a checkmark option to the user's submission
+                const checkBtn = document.createElement("button");
+                checkBtn.innerHTML = '<i class="far fa-check-circle"></i>';
+                checkBtn.classList.add("resolved");
+                item.append(checkBtn);
+
+                //Adds a delete option to the user's submission
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                deleteBtn.classList.add("delete");
+                item.append(deleteBtn);
+
+                //Deletes reports
+                deleteBtn.addEventListener("click", () => {
+                    item.remove();
+                });
+
+                //Marks reports as resolved
+                checkBtn.addEventListener("click", () => {
+                    const checked = item;
+                    //checked
+                    checked.classList.add("done");
+                    checkBtn.addEventListener("transitionend", () => {
+                        item.remove();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

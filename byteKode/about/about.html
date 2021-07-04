@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>safeSchools</title>
+        <link rel='stylesheet' href='aboutStyle.css'>
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="nav">
+            <div class="navBox">
+                <a href="#" id="logo">safeSchools</a>
+                <div class="toggNav" id="minMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="menu">
+                    <li class="items">
+                        <a href="../index.html" class="links">Home</a>
+                    </li>
+                    <li class="items">
+                        <a href="about.html" class="links">About</a>
+                    </li>
+                    <li class="outerBtn">
+                        <a href="../signUp/signUp.html" class="btn">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Canvas -->
+        <canvas id="canvas"></canvas>
+        <label id="label" for='canvas'>Draw it out..</label>
+
+        <!-- Text -->
+        <div class="text">
+            safeSchools is a program designed to keep young people safe from racism, sexism, homophobia, and other forms of bigotry within their school community. It is completely free and allows students to anonymously report people/ policies which have made them feel unsafe at school. Students have the opportunity to keep track of reports made, by deleting issues that no longer exist, or checking off solved problems. Students may also choose to provide safeSchools with their personal information, in order for our program to gain a better understanding of who is being most targeted in each school community. Lastly, students are provided with a blank canvas to express themselves, to alleviate stress from the harmful encounters they have had to report, hopefully bettering their mood! We hope that safeSchools truly accomplishes its goal of making students feel comfortable and ready to learn at school!
+        </div>
+
+        <script>
+            const burger = document.querySelector("#minMenu");
+            const links = document.querySelector(".menu");
+
+            //Drop-Down Menu
+            const minMenu = () => {
+                burger.classList.toggle("is-active");
+                links.classList.toggle("active");
+            }
+
+            burger.addEventListener("click", minMenu);
+
+            //Canvas
+            window.addEventListener("load", () => {
+                const canvas = document.querySelector("#canvas");
+                const context = canvas.getContext("2d");
+
+                canvas.width = 1000;
+                canvas.height = 450;
+
+                let drawing = false;
+
+                function start(e) {
+                    drawing = true;
+                    draw(e);
+                };
+
+                function done() {
+                    drawing = false;
+                    context.beginPath();
+                };
+
+                function draw(e) {
+                    if(!drawing) return;
+                    context.lineWidth = 10;
+                    context.lineCap = "round";
+
+                    context.lineTo(e.clientX, e.clientY)
+                    context.stroke();
+                    context.beginPath();
+                    context.moveTo(e.clientX, e.clientY);
+                }
+
+                canvas.addEventListener("mousedown", start)
+                canvas.addEventListener("mouseup", done)
+                canvas.addEventListener("mousemove", draw)
+            });
+        </script>
+    </body>
+</html>

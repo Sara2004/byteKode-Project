@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>safeSchools</title>
+        <link rel='stylesheet' href='signUpStyle.css'>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    </head>
+
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="nav">
+            <div class="navBox">
+                <a href="#" id="logo">safeSchools</a>
+                <div class="toggNav" id="minMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="menu">
+                    <li class="items">
+                        <a href="../index.html" class="links">Home</a>
+                    </li>
+                    <li class="items">
+                        <a href="../about/about.html" class="links">About</a>
+                    </li>
+                    <li class="outerBtn">
+                        <a href="signUp.html" class="btn">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Background Image -->
+        <div class="pic">
+            <img src="../images/students.jpg">
+        </div>
+
+        <!-- Sign-Up Form -->
+        <div class="signUp">
+            <center>
+                <br><label id="title">Sign Up</label><br><br>
+                <label for="nameOne">First Name:</label>
+                <input id="nameOne" class="name"><br><br>
+                <label for="nameTwo">Last Name:</label>
+                <input id="nameOne" class="name"><br><br>
+                <button id="submit"><i class="far fa-thumbs-up"></i></button>
+            </center>
+        </div>
+
+        <!-- Text -->
+        <div class="snippet">
+            <center>
+                Although not mandatory, sharing your information may help us gain a better understanding of the groups/ people being most racialized in our school community...
+            </center>
+        </div><br><br><br><br><br><br>
+
+        <script>
+            const burger = document.querySelector("#minMenu");
+            const links = document.querySelector(".menu");
+            const submit = document.querySelector("#submit");
+            const nameOne = document.querySelector("#nameOne");
+            const nameTwo = document.querySelector("#nameTwo");
+
+            //Drop-Down Menu
+            const minMenu = () => {
+                burger.classList.toggle("is-active");
+                links.classList.toggle("active");
+            }
+
+            burger.addEventListener("click", minMenu);
+
+            //Lets users know that their data has been submitted 
+            submit.onclick = function clear() {
+                window.alert("Thanks for sharing!");
+                location.reload();
+            };
+        </script>
+    </body>
+</html>
